@@ -1,0 +1,5 @@
+(function _handlePasswordPageOnload() {
+  if (/[?&]e=1(&|$)/.test(document.location.search)) {
+    document.querySelector(".w-password-page.w-form-fail").style.display = "block";
+  }
+})();

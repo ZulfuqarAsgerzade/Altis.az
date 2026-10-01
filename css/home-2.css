@@ -1,0 +1,28 @@
+@media (min-width: 992px) {
+  html.w-mod-js:not(.w-mod-ix) [data-w-id="5b15b492-1175-ac7e-b7e9-b6fb2e8ef528"] {
+    opacity: 0;
+  }
+  html.w-mod-js:not(.w-mod-ix) [data-w-id="daf96f80-6aef-b4a1-03f7-4578d9c57f93"] {
+    opacity: 0;
+  }
+  html.w-mod-js:not(.w-mod-ix) [data-w-id="0c043391-975f-7ed1-49e3-62d419e355f9"] {
+    opacity: 0;
+  }
+  html.w-mod-js:not(.w-mod-ix) [data-w-id="a9ddb274-e712-8490-555a-2160df29d2db"] {
+    opacity: 0;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  html.w-mod-js:not(.w-mod-ix) [data-w-id="5b15b492-1175-ac7e-b7e9-b6fb2e8ef528"] {
+    opacity: 0;
+  }
+  html.w-mod-js:not(.w-mod-ix) [data-w-id="daf96f80-6aef-b4a1-03f7-4578d9c57f93"] {
+    opacity: 0;
+  }
+  html.w-mod-js:not(.w-mod-ix) [data-w-id="0c043391-975f-7ed1-49e3-62d419e355f9"] {
+    opacity: 0;
+  }
+  html.w-mod-js:not(.w-mod-ix) [data-w-id="a9ddb274-e712-8490-555a-2160df29d2db"] {
+    opacity: 0;
+  }
+}
