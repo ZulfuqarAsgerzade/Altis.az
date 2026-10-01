@@ -435,24 +435,6 @@
     height: 60px;
   }
 
-  .location-link.one {
-    inset: 298px auto auto 500px;
-  }
-
-  .location-link.two {
-    top: 209px;
-    left: 90px;
-  }
-
-  .location-link.three {
-    inset: 77px auto auto 241px;
-  }
-
-  .location-link.four {
-    bottom: 100px;
-    left: 228px;
-  }
-
   .gallery-marquee,
   .gallery-marquee-list {
     grid-column-gap: 50px;
@@ -1151,26 +1133,6 @@
     height: 100px;
   }
 
-  .location-link.one {
-    top: 290px;
-    left: 490px;
-  }
-
-  .location-link.two {
-    top: 200px;
-    left: 95px;
-  }
-
-  .location-link.three {
-    top: 107px;
-    left: 256px;
-  }
-
-  .location-link.four {
-    bottom: 130px;
-    left: 214px;
-  }
-
   .grid-about-hero {
     grid-column-gap: 60px;
     grid-row-gap: 60px;
@@ -1800,23 +1762,6 @@
 
   .state-decoration {
     height: 100px;
-  }
-
-  .location-link.one {
-    top: 364px;
-    left: 651px;
-  }
-
-  .location-link.two {
-    inset: 269px auto auto 95px;
-  }
-
-  .location-link.three {
-    inset: 147px auto auto 341px;
-  }
-
-  .location-link.four {
-    inset: auto auto 154px 300px;
   }
 
   .grid-about-hero {

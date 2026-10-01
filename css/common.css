@@ -623,6 +623,10 @@
   transition: opacity 0.3s ease-in-out;
 }
 
+.footer-link-item[href^="tel:"] {
+  white-space: nowrap;
+}
+
 .footer-link-item:hover {
   opacity: 0.6;
 }

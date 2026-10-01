@@ -410,7 +410,6 @@
 
 .location-link.one {
   position: absolute;
-  inset: 280px auto auto 450px;
 }
 
 .location-link.one.w--current {
@@ -419,19 +418,16 @@
 
 .location-link.two {
   position: absolute;
-  inset: 239px auto auto 61px;
 }
 
 .location-link.three {
   filter: grayscale();
   position: absolute;
-  inset: 110px auto auto 241px;
 }
 
 .location-link.four {
   filter: grayscale();
   position: absolute;
-  inset: auto auto 156px 208px;
 }
 
 .location-link.four.w--current {
@@ -2109,7 +2105,7 @@
 }
 
 .contact-tabs-menu {
-  background-image: url("../assets/svg/664db749ea162cadf969aaef_map-image-01.svg");
+  background-image: url("../assets/svg/azerbaijan-map.svg");
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: contain;
@@ -2280,7 +2276,7 @@
 .contact-detail-items {
   grid-column-gap: 10px;
   grid-row-gap: 10px;
-  color: var(--color--black);
+  color: var(--color--gray-1);
   justify-content: flex-start;
   align-items: flex-start;
   margin-bottom: 10px;
@@ -2351,4 +2347,41 @@
 
 .location-image-wrap {
   position: relative;
+}
+
+@media (min-width: 992px) {
+  .contact-tabs-menu {
+    background-size: 100% 100%;
+    aspect-ratio: 800 / 640;
+    align-self: flex-start;
+    margin-top: -7%;
+  }
+
+  .location-link.one,
+  .location-link.two,
+  .location-link.three,
+  .location-link.four {
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+
+  .location-link.one {
+    top: 42.96%;
+    left: 84.81%;
+  }
+
+  .location-link.two {
+    top: 29%;
+    left: 41.49%;
+  }
+
+  .location-link.three {
+    top: 54%;
+    left: 67.5%;
+  }
+
+  .location-link.four {
+    top: 58.57%;
+    left: 34.76%;
+  }
 }
