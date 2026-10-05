@@ -162,40 +162,16 @@
     if (blog) {
       $("fTitle").value = blog.title;
       $("fStatus").value = blog.status;
-      $("fDate").value = blog.date;
       $("fExcerpt").value = blog.excerpt || "";
-      $("fContent").value = blog.content || "";
+      Admin.editor.setHtml(blog.content || "");
       setCover(blog.image);
     } else {
-      $("fDate").value = new Date().toISOString().slice(0, 10);
       setCover("");
+      Admin.editor.setHtml("");
     }
     updateCount();
     dlg.showModal();
     $("fTitle").focus();
-  }
-
-  function readImage(file) {
-    return new Promise(function (resolve, reject) {
-      if (!/^image\//.test(file.type)) return reject(new Error("Yalnız şəkil faylı seçin."));
-      var reader = new FileReader();
-      reader.onerror = function () { reject(new Error("Fayl oxunmadı.")); };
-      reader.onload = function () {
-        var img = new Image();
-        img.onerror = function () { reject(new Error("Şəkil açılmadı.")); };
-        img.onload = function () {
-          // Downscale so the data URL stays small enough for localStorage.
-          var scale = Math.min(1, 800 / img.width);
-          var canvas = document.createElement("canvas");
-          canvas.width = Math.round(img.width * scale);
-          canvas.height = Math.round(img.height * scale);
-          canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
-          resolve(canvas.toDataURL("image/jpeg", 0.8));
-        };
-        img.src = reader.result;
-      };
-      reader.readAsDataURL(file);
-    });
   }
 
   function validate() {
@@ -210,9 +186,11 @@
     need($("fTitle"), "Başlıq ən azı 3 simvol olmalıdır.", function (v) { return v.length >= 3; });
     if ($("fCategory").value === NEW_CAT) need($("fCategoryNew"), "Yeni kateqoriyanın adını yazın (ən azı 2 simvol).", function (v) { return v.length >= 2; });
     else need($("fCategory"), "Kateqoriya seçin.");
-    need($("fDate"), "Tarix seçin.");
-    need($("fContent"), "Məzmun boş ola bilməz.");
-    if (!ok) form.querySelector(".invalid input, .invalid select, .invalid textarea").focus();
+    if (Admin.editor.isEmpty()) {
+      fieldError($("fContent"), "Məzmun boş ola bilməz.");
+      ok = false;
+    }
+    if (!ok) form.querySelector(".invalid input, .invalid select, .invalid textarea, .invalid [contenteditable]").focus();
     return ok;
   }
 
@@ -231,13 +209,14 @@
   $("fCover").addEventListener("change", function () {
     var file = this.files[0];
     if (!file) return;
-    readImage(file).then(setCover).catch(function (err) { $("coverErr").textContent = err.message; });
+    ui.readImage(file, 800).then(setCover).catch(function (err) { $("coverErr").textContent = err.message; });
   });
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     if (!validate()) return;
     var editing = !!state.editingId;
+    var existing = state.blogs.filter(function (b) { return b.id === state.editingId; })[0];
     var btn = $("saveBtn");
     btn.disabled = true;
     var creating = $("fCategory").value === NEW_CAT;
@@ -261,10 +240,10 @@
         title: $("fTitle").value.trim(),
         category: categoryName,
         status: $("fStatus").value,
-        date: $("fDate").value,
+        date: existing ? existing.date : ui.today(),
         image: state.image,
         excerpt: $("fExcerpt").value.trim(),
-        content: $("fContent").value.trim()
+        content: Admin.editor.getHtml()
       });
     }
   });

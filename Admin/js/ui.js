@@ -41,6 +41,38 @@
     });
   }
 
+  // Reads an image file and downsizes it to a JPEG data URL so it fits in localStorage.
+  function readImage(file, maxWidth) {
+    return new Promise(function (resolve, reject) {
+      if (!/^image\//.test(file.type)) return reject(new Error("Yalnız şəkil faylı seçin."));
+      var reader = new FileReader();
+      reader.onerror = function () { reject(new Error("Fayl oxunmadı.")); };
+      reader.onload = function () {
+        var img = new Image();
+        img.onerror = function () { reject(new Error("Şəkil açılmadı.")); };
+        img.onload = function () {
+          var scale = Math.min(1, maxWidth / img.width);
+          var canvas = document.createElement("canvas");
+          canvas.width = Math.round(img.width * scale);
+          canvas.height = Math.round(img.height * scale);
+          var ctx = canvas.getContext("2d");
+          ctx.fillStyle = "#fff";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL("image/jpeg", 0.82));
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Local calendar date as YYYY-MM-DD (toISOString would be off by a day around midnight in UTC+4).
+  function today() {
+    var d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+
   function formatDate(iso) {
     var p = String(iso || "").split("-");
     return p.length === 3 ? p[2] + "." + p[1] + "." + p[0] : "";
@@ -100,6 +132,8 @@
     toast: toast,
     confirm: confirmDialog,
     formatDate: formatDate,
+    today: today,
+    readImage: readImage,
     initials: initials,
     passwordScore: passwordScore,
     bindPasswordToggles: bindPasswordToggles,

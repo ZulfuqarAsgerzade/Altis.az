@@ -14,7 +14,7 @@
   <body>
     <div class="app">
       <aside class="sidebar" id="sidebar" aria-label="Əsas naviqasiya">
-        <div class="sidebar-brand"><img src="../assets/svg/666ab68df4671bb071a62c54_industry-light.svg" alt="Altis" /></div>
+        <a class="sidebar-brand" href="dashboard.html" aria-label="Altis - Bloqlar səhifəsinə keç"><img src="../assets/img/altis-logo-light.png" alt="Altis Group of Companies" width="48" height="75" /></a>
         <div class="sidebar-label">Menyu</div>
         <nav class="nav">
           <a href="dashboard.html" aria-current="page">
@@ -54,7 +54,7 @@
           <button class="btn-icon" type="button" id="menuToggle" aria-label="Menyunu aç" aria-expanded="false" aria-controls="sidebar">
             <svg class="icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
           </button>
-          <img src="../assets/svg/666ab68df4671bb071a62c54_industry-light.svg" alt="Altis" />
+          <a class="topbar-brand" href="dashboard.html" aria-label="Altis - Bloqlar səhifəsinə keç"><img src="../assets/img/altis-logo.png" alt="Altis" width="26" height="40" /></a>
         </header>
 
         <main class="content">
@@ -140,25 +140,19 @@
             <span class="error-text"></span>
           </div>
 
-          <div class="field">
-            <label for="fCategory">Kateqoriya</label>
-            <select class="select" id="fCategory" name="category" required></select>
-            <input class="input" id="fCategoryNew" maxlength="40" placeholder="Yeni kateqoriyanın adı" aria-label="Yeni kateqoriyanın adı" hidden />
-            <span class="error-text"></span>
-          </div>
-
           <div class="field-row">
+            <div class="field">
+              <label for="fCategory">Kateqoriya</label>
+              <select class="select" id="fCategory" name="category" required></select>
+              <input class="input" id="fCategoryNew" maxlength="40" placeholder="Yeni kateqoriyanın adı" aria-label="Yeni kateqoriyanın adı" hidden />
+              <span class="error-text"></span>
+            </div>
             <div class="field">
               <label for="fStatus">Status</label>
               <select class="select" id="fStatus" name="status">
                 <option value="published">Dərc olunub</option>
                 <option value="draft">Qaralama</option>
               </select>
-            </div>
-            <div class="field">
-              <label for="fDate">Tarix</label>
-              <input class="input" id="fDate" name="date" type="date" required />
-              <span class="error-text"></span>
             </div>
           </div>
 
@@ -182,8 +176,31 @@
           </div>
 
           <div class="field">
-            <label for="fContent">Məzmun</label>
-            <textarea class="textarea" id="fContent" name="content" rows="8" placeholder="Bloq mətni" required></textarea>
+            <span class="label" id="fContentLabel">Məzmun</span>
+            <div class="rte">
+              <div class="rte-toolbar" id="rteToolbar" role="toolbar" aria-label="Mətn formatlaşdırma">
+                <button class="rte-btn" type="button" data-cmd="bold" title="Qalın (Ctrl+B)" aria-label="Qalın (Ctrl+B)" data-state><b>B</b></button>
+                <button class="rte-btn" type="button" data-cmd="italic" title="Kursiv (Ctrl+I)" aria-label="Kursiv (Ctrl+I)" data-state><i>I</i></button>
+                <button class="rte-btn" type="button" data-cmd="underline" title="Altından xətt (Ctrl+U)" aria-label="Altından xətt (Ctrl+U)" data-state><u>U</u></button>
+                <button class="rte-btn" type="button" data-cmd="strikeThrough" title="Üstündən xətt" aria-label="Üstündən xətt" data-state><s>S</s></button>
+                <span class="rte-sep"></span>
+                <button class="rte-btn" type="button" data-cmd="h2" title="Başlıq" aria-label="Başlıq" data-block="h2">H2</button>
+                <button class="rte-btn" type="button" data-cmd="h3" title="Alt başlıq" aria-label="Alt başlıq" data-block="h3">H3</button>
+                <span class="rte-sep"></span>
+                <button class="rte-btn" type="button" data-cmd="insertUnorderedList" title="Siyahı" aria-label="Siyahı" data-state><svg class="icon" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12" /><circle cx="4.5" cy="6" r="1" /><circle cx="4.5" cy="12" r="1" /><circle cx="4.5" cy="18" r="1" /></svg></button>
+                <button class="rte-btn" type="button" data-cmd="insertOrderedList" title="Nömrəli siyahı" aria-label="Nömrəli siyahı" data-state><svg class="icon" viewBox="0 0 24 24"><path d="M10 6h11M10 12h11M10 18h11M4 5l1.5-1v4M3.5 14h3L3.5 17.5h3" /></svg></button>
+                <button class="rte-btn" type="button" data-cmd="quote" title="Sitat" aria-label="Sitat" data-block="blockquote"><svg class="icon" viewBox="0 0 24 24"><path d="M4 12V8a4 4 0 0 1 4-4M14 12V8a4 4 0 0 1 4-4M4 12h6v6H4ZM14 12h6v6h-6Z" /></svg></button>
+                <span class="rte-sep"></span>
+                <button class="rte-btn" type="button" data-cmd="link" title="Link əlavə et (Ctrl+K)" aria-label="Link əlavə et (Ctrl+K)"><svg class="icon" viewBox="0 0 24 24"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" /></svg></button>
+                <button class="rte-btn" type="button" data-cmd="image" title="Şəkil əlavə et" aria-label="Şəkil əlavə et"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" /><circle cx="9" cy="10" r="2" /><path d="m21 16-5-5-9 9" /></svg></button>
+                <button class="rte-btn" type="button" data-cmd="video" title="YouTube video əlavə et" aria-label="YouTube video əlavə et"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" /><path d="m10 9 5 3-5 3Z" /></svg></button>
+                <span class="rte-sep"></span>
+                <button class="rte-btn" type="button" data-cmd="removeFormat" title="Formatı təmizlə" aria-label="Formatı təmizlə"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7V4h16v3M9 20h6M12 4v16M4 20l16-16" /></svg></button>
+                <button class="rte-btn" type="button" data-cmd="undo" title="Geri al" aria-label="Geri al"><svg class="icon" viewBox="0 0 24 24"><path d="M3 7v6h6M3 13a9 9 0 1 1 3 6.7" /></svg></button>
+                <button class="rte-btn" type="button" data-cmd="redo" title="Təkrarla" aria-label="Təkrarla"><svg class="icon" viewBox="0 0 24 24"><path d="M21 7v6h-6M21 13a9 9 0 1 0-3 6.7" /></svg></button>
+              </div>
+              <div class="rte-area is-empty" id="fContent" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="fContentLabel" data-placeholder="Bloq mətnini buraya yazın..."></div>
+            </div>
             <span class="error-text"></span>
           </div>
         </div>
@@ -191,6 +208,71 @@
         <div class="dlg-foot">
           <button class="btn btn-outline" type="button" data-close>Ləğv et</button>
           <button class="btn" type="submit" id="saveBtn">Yadda saxla</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Editor: link -->
+    <dialog class="sm" id="linkDialog" aria-labelledby="linkTitle">
+      <form id="linkForm" novalidate>
+        <div class="dlg-head"><h2 id="linkTitle">Link əlavə et</h2></div>
+        <div class="dlg-body">
+          <div class="field">
+            <label for="linkUrl">Ünvan (URL)</label>
+            <input class="input" id="linkUrl" placeholder="https://altis.az" autocomplete="off" />
+            <span class="error-text"></span>
+          </div>
+          <label class="check"><input type="checkbox" id="linkNewTab" /> Yeni tabda aç</label>
+        </div>
+        <div class="dlg-foot">
+          <button class="btn btn-outline" type="button" id="linkRemove" hidden>Linki sil</button>
+          <button class="btn btn-outline" type="button" data-close>Ləğv et</button>
+          <button class="btn" type="submit">Tətbiq et</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Editor: image -->
+    <dialog class="sm" id="imageDialog" aria-labelledby="imageTitle">
+      <form id="imageForm" novalidate>
+        <div class="dlg-head"><h2 id="imageTitle">Şəkil əlavə et</h2></div>
+        <div class="dlg-body">
+          <div class="field">
+            <label for="imageFile">Kompüterdən seç</label>
+            <input class="input" id="imageFile" type="file" accept="image/*" />
+          </div>
+          <div class="field">
+            <label for="imageUrl">və ya şəkil linki</label>
+            <input class="input" id="imageUrl" placeholder="https://..." autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="imageAlt">Alternativ mətn</label>
+            <input class="input" id="imageAlt" maxlength="120" placeholder="Şəkildə nə var? (SEO və əlçatanlıq üçün)" />
+            <span class="error-text"></span>
+          </div>
+        </div>
+        <div class="dlg-foot">
+          <button class="btn btn-outline" type="button" data-close>Ləğv et</button>
+          <button class="btn" type="submit" id="imageSubmit">Əlavə et</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Editor: video -->
+    <dialog class="sm" id="videoDialog" aria-labelledby="videoTitle">
+      <form id="videoForm" novalidate>
+        <div class="dlg-head"><h2 id="videoTitle">YouTube video əlavə et</h2></div>
+        <div class="dlg-body">
+          <div class="field">
+            <label for="videoUrl">YouTube linki</label>
+            <input class="input" id="videoUrl" placeholder="https://www.youtube.com/watch?v=..." autocomplete="off" />
+            <span class="error-text"></span>
+            <span class="hint">Video bloqda 16:9 oynadıcı kimi görünəcək.</span>
+          </div>
+        </div>
+        <div class="dlg-foot">
+          <button class="btn btn-outline" type="button" data-close>Ləğv et</button>
+          <button class="btn" type="submit">Əlavə et</button>
         </div>
       </form>
     </dialog>
@@ -208,6 +290,7 @@
     <div class="toasts" id="toasts" aria-live="polite"></div>
 
     <script src="js/ui.js"></script>
+    <script src="js/editor.js"></script>
     <script src="js/dashboard.js"></script>
   </body>
 </html>

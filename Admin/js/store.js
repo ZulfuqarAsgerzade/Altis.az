@@ -14,7 +14,7 @@
     return {
       id: "b" + id, title: title, category: category, status: status, date: date,
       image: IMG + image, excerpt: excerpt,
-      content: excerpt + "\n\n(Demo content - replace with the real article text.)"
+      content: "<p>" + excerpt + "</p><p>(Demo content - replace with the real article text.)</p>"
     };
   }
 
