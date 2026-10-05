@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Altis Admin | Giriş</title>
+    <link href="../assets/img/665574c86afd901b6765286e_favicon.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="css/admin.css" rel="stylesheet" />
+    <script src="js/store.js"></script>
+    <script src="js/auth.js"></script>
+    <script>Admin.auth.redirectIfAuthed();</script>
+  </head>
+  <body>
+    <div class="login">
+      <aside class="login-aside">
+        <img class="login-logo" src="../assets/svg/666ab68df4671bb071a62c54_industry-light.svg" alt="Altis" />
+        <div>
+          <h2>Altis idarəetmə paneli</h2>
+          <p>Bloqları və sayt məzmununu bir yerdən idarə edin.</p>
+        </div>
+      </aside>
+
+      <main class="login-main">
+        <div class="login-card">
+          <!-- Sign in -->
+          <section id="loginView">
+            <h1>Xoş gəlmisiniz</h1>
+            <p>Davam etmək üçün hesabınıza daxil olun.</p>
+
+            <form id="loginForm" novalidate>
+              <div id="loginError" class="alert alert-error" role="alert" hidden></div>
+
+              <div class="field">
+                <label for="email">E-poçt</label>
+                <input class="input" id="email" name="email" type="email" autocomplete="username" placeholder="admin@altis.az" required />
+              </div>
+
+              <div class="field">
+                <label for="password">Şifrə</label>
+                <div class="input-wrap">
+                  <input class="input" id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required />
+                  <button class="input-toggle" type="button" data-toggle-password="password" aria-label="Şifrəni göstər" aria-pressed="false">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" /><circle cx="12" cy="12" r="3" /></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="login-row">
+                <label class="check"><input type="checkbox" id="remember" /> Məni xatırla</label>
+                <button class="link-btn" type="button" id="showForgot">Şifrəni unutmusunuz?</button>
+              </div>
+
+              <button class="btn btn-block" type="submit" id="loginBtn">Daxil ol</button>
+            </form>
+
+            <p class="login-demo">Demo giriş: <code>admin@altis.az</code> / <code>Admin123!</code></p>
+            <a class="login-back" href="../index.html">&larr; Sayta qayıt</a>
+          </section>
+
+          <!-- Forgot password -->
+          <section id="forgotView" hidden>
+            <h1>Şifrə bərpası</h1>
+            <p>E-poçt ünvanınızı yazın, bərpa linki göndərək.</p>
+
+            <form id="forgotForm" novalidate>
+              <div id="forgotMsg" class="alert alert-success" role="status" hidden>
+                Bu e-poçt qeydiyyatlıdırsa, bərpa linki göndərildi.
+              </div>
+              <div class="field">
+                <label for="forgotEmail">E-poçt</label>
+                <input class="input" id="forgotEmail" type="email" autocomplete="email" placeholder="admin@altis.az" required />
+                <span class="error-text" id="forgotErr"></span>
+              </div>
+              <button class="btn btn-block" type="submit" id="forgotBtn">Link göndər</button>
+            </form>
+            <button class="link-btn login-back" type="button" id="showLogin">&larr; Girişə qayıt</button>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/ui.js"></script>
+    <script src="js/login.js"></script>
+  </body>
+</html>

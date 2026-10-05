@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Altis Admin | Bloqlar</title>
+    <link href="../assets/img/665574c86afd901b6765286e_favicon.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="css/admin.css" rel="stylesheet" />
+    <script src="js/store.js"></script>
+    <script src="js/auth.js"></script>
+    <script>Admin.auth.require();</script>
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar" aria-label="Əsas naviqasiya">
+        <div class="sidebar-brand"><img src="../assets/svg/666ab68df4671bb071a62c54_industry-light.svg" alt="Altis" /></div>
+        <div class="sidebar-label">Menyu</div>
+        <nav class="nav">
+          <a href="dashboard.html" aria-current="page">
+            <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" /><rect x="14" y="3" width="7" height="5" /><rect x="14" y="12" width="7" height="9" /><rect x="3" y="16" width="7" height="5" /></svg>
+            Bloqlar
+          </a>
+          <a href="categories.html">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z" /><circle cx="7.5" cy="7.5" r="1.2" /></svg>
+            Kateqoriyalar
+          </a>
+          <a href="settings.html">
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z" /></svg>
+            Parametrlər
+          </a>
+          <a href="../index.html" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" /></svg>
+            Sayta bax
+          </a>
+        </nav>
+        <div class="sidebar-foot">
+          <div class="user-chip">
+            <span class="avatar" data-user-initials>A</span>
+            <div><strong data-user-name>Admin</strong><span data-user-email></span></div>
+          </div>
+          <nav class="nav">
+            <button type="button" data-logout>
+              <svg class="icon" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" /></svg>
+              Çıxış
+            </button>
+          </nav>
+        </div>
+      </aside>
+      <div class="overlay" id="overlay"></div>
+
+      <div class="main">
+        <header class="topbar">
+          <button class="btn-icon" type="button" id="menuToggle" aria-label="Menyunu aç" aria-expanded="false" aria-controls="sidebar">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
+          </button>
+          <img src="../assets/svg/666ab68df4671bb071a62c54_industry-light.svg" alt="Altis" />
+        </header>
+
+        <main class="content">
+          <div class="page-head">
+            <div>
+              <h1>Bloqlar</h1>
+              <p>Saytda görünən bütün yazıları idarə edin.</p>
+            </div>
+            <button class="btn" type="button" id="addBtn">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>
+              Yeni bloq
+            </button>
+          </div>
+
+          <section class="stats" aria-label="Statistika">
+            <div class="stat"><span>Cəmi bloq</span><strong id="statTotal">0</strong></div>
+            <div class="stat"><span>Dərc olunub</span><strong id="statPublished">0</strong></div>
+            <div class="stat"><span>Qaralama</span><strong id="statDraft">0</strong></div>
+            <div class="stat"><span>Kateqoriya</span><strong id="statCats">0</strong></div>
+          </section>
+
+          <section class="card" aria-label="Bloq siyahısı">
+            <div class="toolbar">
+              <div class="search">
+                <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg>
+                <label class="sr-only" for="searchInput">Axtar</label>
+                <input class="input" id="searchInput" type="search" placeholder="Başlıq üzrə axtar..." />
+              </div>
+              <label class="sr-only" for="statusFilter">Status</label>
+              <select class="select" id="statusFilter">
+                <option value="">Bütün statuslar</option>
+                <option value="published">Dərc olunub</option>
+                <option value="draft">Qaralama</option>
+              </select>
+              <label class="sr-only" for="categoryFilter">Kateqoriya</label>
+              <select class="select" id="categoryFilter"><option value="">Bütün kateqoriyalar</option></select>
+            </div>
+
+            <div class="table-wrap">
+              <table id="blogTable">
+                <thead>
+                  <tr>
+                    <th scope="col">Bloq</th>
+                    <th scope="col" class="col-hide-sm col-hide-md">Kateqoriya</th>
+                    <th scope="col">Status</th>
+                    <th scope="col" class="col-hide-sm">Tarix</th>
+                    <th scope="col" class="col-actions"><span class="sr-only">Əməliyyatlar</span></th>
+                  </tr>
+                </thead>
+                <tbody id="blogRows"></tbody>
+              </table>
+            </div>
+
+            <div class="empty" id="emptyState" hidden>
+              <h3>Bloq tapılmadı</h3>
+              <p id="emptyText">Axtarışa uyğun nəticə yoxdur.</p>
+              <button class="btn" type="button" id="emptyAdd">Yeni bloq əlavə et</button>
+            </div>
+
+            <div class="pager" id="pager">
+              <span id="pagerInfo"></span>
+              <div class="pager-btns" id="pagerBtns"></div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- Add / edit blog -->
+    <dialog id="blogDialog" aria-labelledby="dlgTitle">
+      <form id="blogForm" novalidate>
+        <div class="dlg-head">
+          <h2 id="dlgTitle">Yeni bloq</h2>
+          <button class="btn-icon" type="button" data-close aria-label="Bağla">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" /></svg>
+          </button>
+        </div>
+
+        <div class="dlg-body">
+          <div class="field">
+            <label for="fTitle">Başlıq</label>
+            <input class="input" id="fTitle" name="title" maxlength="140" placeholder="Bloqun başlığı" required />
+            <span class="error-text"></span>
+          </div>
+
+          <div class="field">
+            <label for="fCategory">Kateqoriya</label>
+            <select class="select" id="fCategory" name="category" required></select>
+            <input class="input" id="fCategoryNew" maxlength="40" placeholder="Yeni kateqoriyanın adı" aria-label="Yeni kateqoriyanın adı" hidden />
+            <span class="error-text"></span>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="fStatus">Status</label>
+              <select class="select" id="fStatus" name="status">
+                <option value="published">Dərc olunub</option>
+                <option value="draft">Qaralama</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fDate">Tarix</label>
+              <input class="input" id="fDate" name="date" type="date" required />
+              <span class="error-text"></span>
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="label">Üz qabığı şəkli</span>
+            <div class="cover-box">
+              <img class="cover-preview" id="coverPreview" alt="" hidden />
+              <div class="cover-actions">
+                <label class="btn btn-outline" for="fCover">Şəkil seç</label>
+                <input class="sr-only" id="fCover" type="file" accept="image/*" />
+                <button class="btn btn-outline" type="button" id="coverRemove" hidden>Sil</button>
+              </div>
+            </div>
+            <span class="error-text" id="coverErr"></span>
+          </div>
+
+          <div class="field">
+            <label for="fExcerpt">Qısa təsvir</label>
+            <textarea class="textarea" id="fExcerpt" name="excerpt" rows="2" maxlength="200" placeholder="Siyahıda görünən 1-2 cümləlik xülasə"></textarea>
+            <span class="counter hint" id="excerptCount">0 / 200</span>
+          </div>
+
+          <div class="field">
+            <label for="fContent">Məzmun</label>
+            <textarea class="textarea" id="fContent" name="content" rows="8" placeholder="Bloq mətni" required></textarea>
+            <span class="error-text"></span>
+          </div>
+        </div>
+
+        <div class="dlg-foot">
+          <button class="btn btn-outline" type="button" data-close>Ləğv et</button>
+          <button class="btn" type="submit" id="saveBtn">Yadda saxla</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Confirm -->
+    <dialog class="sm" id="confirmDialog" aria-labelledby="confirmTitle">
+      <div class="dlg-head"><h2 id="confirmTitle" data-confirm-title>Əminsiniz?</h2></div>
+      <div class="dlg-body"><p data-confirm-text></p></div>
+      <div class="dlg-foot">
+        <button class="btn btn-outline" type="button" onclick="this.closest('dialog').close()">Ləğv et</button>
+        <button class="btn btn-danger" type="button" data-confirm-ok>Sil</button>
+      </div>
+    </dialog>
+
+    <div class="toasts" id="toasts" aria-live="polite"></div>
+
+    <script src="js/ui.js"></script>
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>
