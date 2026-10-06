@@ -213,7 +213,9 @@
   }
 
   .logo {
-    height: 30px;
+    height: 58px;
+    margin-top: -14px;
+    margin-bottom: -14px;
   }
 
   .navbar-light {

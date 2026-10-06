@@ -537,6 +537,27 @@
   text-align: center;
 }
 
+.logo {
+  width: auto;
+  height: 96px;
+  margin-top: -28px;
+  margin-bottom: -28px;
+}
+
+/* Home navbar is only 87px tall between 992px and 1279px; keep the larger logo from being clipped at the page top. */
+@media screen and (min-width: 992px) and (max-width: 1279px) {
+  .navbar-light .logo {
+    height: 80px;
+    margin-top: -20px;
+    margin-bottom: -20px;
+  }
+}
+
+.footer-logo {
+  width: auto;
+  height: 110px;
+}
+
 .footer-copyright {
   color: var(--color--white);
   text-align: center;
@@ -596,6 +617,19 @@
   grid-auto-columns: 1fr;
   place-items: start stretch;
   display: grid;
+}
+
+/* Footer with 3 columns (no "Utility pages" column). A 4-column footer keeps the original template above. */
+@media screen and (min-width: 992px) {
+  .footer-wrap:not(:has(> :nth-child(4))) {
+    grid-template-columns: 1.75fr 1fr 1.25fr;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .footer-wrap:not(:has(> :nth-child(4))) {
+    grid-template-columns: 1.75fr 1.25fr 1.5fr;
+  }
 }
 
 .footer-links {

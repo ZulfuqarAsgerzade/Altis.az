@@ -559,6 +559,10 @@
   margin-bottom: 0;
 }
 
+.about-tab-content + .about-tab-content {
+  margin-top: 15px;
+}
+
 .about-tabs-decoration {
   height: 50px;
   position: absolute;
@@ -2170,15 +2174,19 @@
   grid-column-gap: 20px;
   grid-row-gap: 20px;
   grid-template-rows: auto;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .service-one-item {
   background-color: var(--color--white);
+  color: var(--color--primary-1);
   padding: 20px;
   font-size: 16px;
   text-decoration: none;
   position: relative;
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
 }
 
 .service-one-icon-wrap {
@@ -2190,6 +2198,22 @@
   height: 80px;
   margin-bottom: 30px;
   display: flex;
+  transition: background-color 0.4s ease;
+}
+
+@media (hover: hover) {
+  .service-one-item:hover {
+    background-color: var(--color--primary-1);
+    color: var(--color--white);
+  }
+
+  .service-one-item:hover .service-one-title {
+    color: var(--color--white);
+  }
+
+  .service-one-item:hover .service-one-icon-wrap {
+    background-color: var(--color--white);
+  }
 }
 
 .service-one-icon {
@@ -2199,6 +2223,7 @@
 .service-one-title {
   margin-bottom: 20px;
   font-size: 20px;
+  transition: color 0.4s ease;
 }
 
 .service-one-decoration {

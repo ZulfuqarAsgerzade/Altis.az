@@ -252,7 +252,9 @@
   }
 
   .logo {
-    height: 50px;
+    height: 76px;
+    margin-top: -13px;
+    margin-bottom: -13px;
   }
 
   .button-left {
