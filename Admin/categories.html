@@ -26,6 +26,10 @@
             <svg class="icon" viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z" /><circle cx="7.5" cy="7.5" r="1.2" /></svg>
             Kateqoriyalar
           </a>
+          <a href="projects.html">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" /></svg>
+            Layihələr
+          </a>
           <a href="settings.html">
             <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z" /></svg>
             Parametrlər
@@ -62,7 +66,7 @@
           <div class="page-head">
             <div>
               <h1>Kateqoriyalar</h1>
-              <p>Bloqlarda seçilən kateqoriyaları idarə edin.</p>
+              <p id="pageDesc">Bloqlarda seçilən kateqoriyaları idarə edin.</p>
             </div>
             <button class="btn" type="button" id="addBtn">
               <svg class="icon" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>
@@ -70,13 +74,18 @@
             </button>
           </div>
 
-          <section class="card" aria-label="Kateqoriya siyahısı">
+          <div class="tabs" role="tablist" aria-label="Kateqoriya növü">
+            <button class="tab" type="button" role="tab" id="tabBlog" data-type="blog" aria-selected="true" aria-controls="catPanel">Bloq kateqoriyaları</button>
+            <button class="tab" type="button" role="tab" id="tabProject" data-type="project" aria-selected="false" aria-controls="catPanel" tabindex="-1">Layihə kateqoriyaları</button>
+          </div>
+
+          <section class="card" id="catPanel" role="tabpanel" aria-label="Kateqoriya siyahısı">
             <div class="table-wrap">
               <table>
                 <thead>
                   <tr>
                     <th scope="col">Ad</th>
-                    <th scope="col">Bloq sayı</th>
+                    <th scope="col" id="countHead">Bloq sayı</th>
                     <th scope="col" class="col-actions"><span class="sr-only">Əməliyyatlar</span></th>
                   </tr>
                 </thead>

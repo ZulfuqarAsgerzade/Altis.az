@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
-    <title>Altis Admin | Bloqlar</title>
+    <title>Altis Admin | Layihələr</title>
     <link href="../assets/img/altis-icon-32x32.png" rel="icon" type="image/png" sizes="32x32" />
     <link href="../assets/img/altis-icon-192x192.png" rel="icon" type="image/png" sizes="192x192" />
     <link href="css/admin.css" rel="stylesheet" />
@@ -18,7 +18,7 @@
         <a class="sidebar-brand" href="dashboard.html" aria-label="Altis - Bloqlar səhifəsinə keç"><img src="../assets/img/altis-logo-light.png" alt="Altis Group of Companies" width="48" height="75" /></a>
         <div class="sidebar-label">Menyu</div>
         <nav class="nav">
-          <a href="dashboard.html" aria-current="page">
+          <a href="dashboard.html">
             <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" /><rect x="14" y="3" width="7" height="5" /><rect x="14" y="12" width="7" height="9" /><rect x="3" y="16" width="7" height="5" /></svg>
             Bloqlar
           </a>
@@ -26,7 +26,7 @@
             <svg class="icon" viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z" /><circle cx="7.5" cy="7.5" r="1.2" /></svg>
             Kateqoriyalar
           </a>
-          <a href="projects.html">
+          <a href="projects.html" aria-current="page">
             <svg class="icon" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" /></svg>
             Layihələr
           </a>
@@ -65,58 +65,52 @@
         <main class="content">
           <div class="page-head">
             <div>
-              <h1>Bloqlar</h1>
-              <p>Saytda görünən bütün yazıları idarə edin.</p>
+              <h1>Layihələr</h1>
+              <p>Saytda görünən bütün layihələri idarə edin.</p>
             </div>
             <button class="btn" type="button" id="addBtn">
               <svg class="icon" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>
-              Yeni bloq
+              Yeni layihə
             </button>
           </div>
 
           <section class="stats" aria-label="Statistika">
-            <div class="stat"><span>Cəmi bloq</span><strong id="statTotal">0</strong></div>
-            <div class="stat"><span>Dərc olunub</span><strong id="statPublished">0</strong></div>
-            <div class="stat"><span>Qaralama</span><strong id="statDraft">0</strong></div>
+            <div class="stat"><span>Cəmi layihə</span><strong id="statTotal">0</strong></div>
+            <div class="stat"><span>Müştəri</span><strong id="statClients">0</strong></div>
             <div class="stat"><span>Kateqoriya</span><strong id="statCats">0</strong></div>
           </section>
 
-          <section class="card" aria-label="Bloq siyahısı">
+          <section class="card" aria-label="Layihə siyahısı">
             <div class="toolbar">
               <div class="search">
                 <svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg>
                 <label class="sr-only" for="searchInput">Axtar</label>
-                <input class="input" id="searchInput" type="search" placeholder="Başlıq üzrə axtar..." />
+                <input class="input" id="searchInput" type="search" placeholder="Ad, müştəri və ya məkan üzrə axtar..." />
               </div>
-              <label class="sr-only" for="statusFilter">Status</label>
-              <select class="select" id="statusFilter">
-                <option value="">Bütün statuslar</option>
-                <option value="published">Dərc olunub</option>
-                <option value="draft">Qaralama</option>
-              </select>
               <label class="sr-only" for="categoryFilter">Kateqoriya</label>
               <select class="select" id="categoryFilter"><option value="">Bütün kateqoriyalar</option></select>
             </div>
 
             <div class="table-wrap">
-              <table id="blogTable">
+              <table id="projectTable">
                 <thead>
                   <tr>
-                    <th scope="col">Bloq</th>
+                    <th scope="col">Layihə</th>
+                    <th scope="col" class="col-hide-sm">Müştəri</th>
                     <th scope="col" class="col-hide-sm col-hide-md">Kateqoriya</th>
-                    <th scope="col">Status</th>
+                    <th scope="col" class="col-hide-sm col-hide-md">Məkan</th>
                     <th scope="col" class="col-hide-sm">Tarix</th>
                     <th scope="col" class="col-actions"><span class="sr-only">Əməliyyatlar</span></th>
                   </tr>
                 </thead>
-                <tbody id="blogRows"></tbody>
+                <tbody id="projectRows"></tbody>
               </table>
             </div>
 
             <div class="empty" id="emptyState" hidden>
-              <h3>Bloq tapılmadı</h3>
+              <h3>Layihə tapılmadı</h3>
               <p id="emptyText">Axtarışa uyğun nəticə yoxdur.</p>
-              <button class="btn" type="button" id="emptyAdd">Yeni bloq əlavə et</button>
+              <button class="btn" type="button" id="emptyAdd">Yeni layihə əlavə et</button>
             </div>
 
             <div class="pager" id="pager">
@@ -128,11 +122,11 @@
       </div>
     </div>
 
-    <!-- Add / edit blog -->
-    <dialog id="blogDialog" aria-labelledby="dlgTitle">
-      <form id="blogForm" novalidate>
+    <!-- Add / edit project -->
+    <dialog id="projectDialog" aria-labelledby="dlgTitle">
+      <form id="projectForm" novalidate>
         <div class="dlg-head">
-          <h2 id="dlgTitle">Yeni bloq</h2>
+          <h2 id="dlgTitle">Yeni layihə</h2>
           <button class="btn-icon" type="button" data-close aria-label="Bağla">
             <svg class="icon" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" /></svg>
           </button>
@@ -140,29 +134,40 @@
 
         <div class="dlg-body">
           <div class="field">
-            <label for="fTitle">Başlıq</label>
-            <input class="input" id="fTitle" name="title" maxlength="140" placeholder="Bloqun başlığı" required />
+            <label for="fTitle">Layihənin adı</label>
+            <input class="input" id="fTitle" name="title" maxlength="140" placeholder="Layihənin adı" required />
             <span class="error-text"></span>
           </div>
 
           <div class="field-row">
+            <div class="field">
+              <label for="fClient">Müştəri</label>
+              <input class="input" id="fClient" name="client" maxlength="80" placeholder="Məs: Tikinti" autocomplete="off" required />
+              <span class="error-text"></span>
+            </div>
             <div class="field">
               <label for="fCategory">Kateqoriya</label>
               <select class="select" id="fCategory" name="category" required></select>
               <input class="input" id="fCategoryNew" maxlength="40" placeholder="Yeni kateqoriyanın adı" aria-label="Yeni kateqoriyanın adı" hidden />
               <span class="error-text"></span>
             </div>
+          </div>
+
+          <div class="field-row">
             <div class="field">
-              <label for="fStatus">Status</label>
-              <select class="select" id="fStatus" name="status">
-                <option value="published">Dərc olunub</option>
-                <option value="draft">Qaralama</option>
-              </select>
+              <label for="fLocation">Məkan</label>
+              <input class="input" id="fLocation" name="location" maxlength="120" placeholder="Məs: Bakı, Azərbaycan" required />
+              <span class="error-text"></span>
+            </div>
+            <div class="field">
+              <label for="fDate">Tarix</label>
+              <input class="input" id="fDate" name="date" type="date" required />
+              <span class="error-text"></span>
             </div>
           </div>
 
           <div class="field">
-            <span class="label">Üz qabığı şəkli</span>
+            <span class="label">Layihənin şəkli</span>
             <div class="cover-box">
               <img class="cover-preview" id="coverPreview" alt="" hidden />
               <div class="cover-actions">
@@ -172,12 +177,6 @@
               </div>
             </div>
             <span class="error-text" id="coverErr"></span>
-          </div>
-
-          <div class="field">
-            <label for="fExcerpt">Qısa təsvir</label>
-            <textarea class="textarea" id="fExcerpt" name="excerpt" rows="2" maxlength="200" placeholder="Siyahıda görünən 1-2 cümləlik xülasə"></textarea>
-            <span class="counter hint" id="excerptCount">0 / 200</span>
           </div>
 
           <div class="field">
@@ -204,7 +203,7 @@
                 <button class="rte-btn" type="button" data-cmd="undo" title="Geri al" aria-label="Geri al"><svg class="icon" viewBox="0 0 24 24"><path d="M3 7v6h6M3 13a9 9 0 1 1 3 6.7" /></svg></button>
                 <button class="rte-btn" type="button" data-cmd="redo" title="Təkrarla" aria-label="Təkrarla"><svg class="icon" viewBox="0 0 24 24"><path d="M21 7v6h-6M21 13a9 9 0 1 0-3 6.7" /></svg></button>
               </div>
-              <div class="rte-area is-empty" id="fContent" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="fContentLabel" data-placeholder="Bloq mətnini buraya yazın..."></div>
+              <div class="rte-area is-empty" id="fContent" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="fContentLabel" data-placeholder="Layihənin məzmununu buraya yazın..."></div>
             </div>
             <span class="error-text"></span>
           </div>
@@ -272,7 +271,7 @@
             <label for="videoUrl">YouTube linki</label>
             <input class="input" id="videoUrl" placeholder="https://www.youtube.com/watch?v=..." autocomplete="off" />
             <span class="error-text"></span>
-            <span class="hint">Video bloqda 16:9 oynadıcı kimi görünəcək.</span>
+            <span class="hint">Video layihədə 16:9 oynadıcı kimi görünəcək.</span>
           </div>
         </div>
         <div class="dlg-foot">
@@ -296,6 +295,6 @@
 
     <script src="js/ui.js"></script>
     <script src="js/editor.js"></script>
-    <script src="js/dashboard.js"></script>
+    <script src="js/projects.js"></script>
   </body>
 </html>

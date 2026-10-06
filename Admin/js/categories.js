@@ -6,6 +6,23 @@
 
   ui.initShell();
 
+  var TYPES = {
+    blog: {
+      desc: "Bloqlarda seçilən kateqoriyaları idarə edin.",
+      countHead: "Bloq sayı",
+      emptyText: "İlk bloq kateqoriyasını əlavə edin.",
+      deleteText: function (name) { return "“" + name + "” bloq kateqoriyası silinəcək."; }
+    },
+    project: {
+      desc: "Layihələrdə seçilən kateqoriyaları idarə edin.",
+      countHead: "Layihə sayı",
+      emptyText: "İlk layihə kateqoriyasını əlavə edin.",
+      deleteText: function (name) { return "“" + name + "” layihə kateqoriyası silinəcək."; }
+    }
+  };
+  var type = "blog";
+  try { if (localStorage.getItem("altis_admin_cat_tab") === "project") type = "project"; } catch (e) {}
+
   var items = [];
   var editing = null; // original name while renaming, null when adding
   var dlg = $("catDialog");
@@ -29,7 +46,7 @@
   }
 
   function load() {
-    return Admin.store.listCategories().then(function (list) {
+    return Admin.store.listCategories(type).then(function (list) {
       items = list.sort(function (a, b) { return a.name.localeCompare(b.name, "az"); });
       render();
     });
@@ -62,7 +79,7 @@
     if (name.length < 2) return setError("Ad ən azı 2 simvol olmalıdır.");
     var btn = $("catSave");
     btn.disabled = true;
-    Admin.store.saveCategory(name, editing)
+    Admin.store.saveCategory(name, editing, type)
       .then(function () {
         dlg.close();
         ui.toast(editing ? "Kateqoriya yeniləndi." : "Kateqoriya əlavə edildi.", "success");
@@ -80,15 +97,41 @@
     var name = del.getAttribute("data-delete");
     ui.confirm({
       title: "Kateqoriyanı sil",
-      text: "“" + name + "” kateqoriyası silinəcək.",
+      text: TYPES[type].deleteText(name),
       okLabel: "Sil"
     }).then(function (yes) {
       if (!yes) return;
-      Admin.store.deleteCategory(name)
+      Admin.store.deleteCategory(name, type)
         .then(function () { ui.toast("Kateqoriya silindi.", "success"); return load(); })
         .catch(function (err) { ui.toast(err.message, "error"); });
     });
   });
 
-  load();
+  function setType(next, focus) {
+    type = next;
+    try { localStorage.setItem("altis_admin_cat_tab", type); } catch (e) {}
+    var cfg = TYPES[type];
+    document.querySelectorAll(".tab").forEach(function (tab) {
+      var on = tab.getAttribute("data-type") === type;
+      tab.setAttribute("aria-selected", String(on));
+      tab.tabIndex = on ? 0 : -1;
+      if (on && focus) tab.focus();
+    });
+    $("pageDesc").textContent = cfg.desc;
+    $("countHead").textContent = cfg.countHead;
+    $("emptyState").querySelector("p").textContent = cfg.emptyText;
+    return load();
+  }
+
+  document.querySelector(".tabs").addEventListener("click", function (e) {
+    var tab = e.target.closest(".tab");
+    if (tab) setType(tab.getAttribute("data-type"));
+  });
+  document.querySelector(".tabs").addEventListener("keydown", function (e) {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    e.preventDefault();
+    setType(type === "blog" ? "project" : "blog", true);
+  });
+
+  setType(type);
 })();
