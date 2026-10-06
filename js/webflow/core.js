@@ -3335,14 +3335,14 @@
           if (-1 !== e.indexOf(d)) {
             let n = e.split(d),
               a = n[0];
-            if (((t = n[1]), a !== document.documentElement.getAttribute(f))) return null;
+            if (((t = n[1]), !(document.documentElement.getAttribute(f) || "").split(" ").includes(a))) return null;
           }
           return `[data-w-id="${t}"], [data-w-id^="${t}_instance"]`;
         }
         return t;
       }
       function y(e) {
-        return null == e || e === document.documentElement.getAttribute(f) ? document : null;
+        return null == e || (document.documentElement.getAttribute(f) || "").split(" ").includes(e) ? document : null;
       }
       function m(e, t) {
         return Array.prototype.slice.call(document.querySelectorAll(t ? e + " " + t : e));
