@@ -1,0 +1,9 @@
+# Static site: no build step, the repository root is published as is.
+[build]
+  publish = "."
+
+# Unknown URLs get the site's own 404 page (its asset paths are root-absolute, so it renders at any depth).
+[[redirects]]
+  from = "/*"
+  to = "/html/404.html"
+  status = 404
