@@ -2227,10 +2227,10 @@
 }
 
 .service-one-decoration {
-  width: 30px;
-  height: 30px;
+  width: 31px;
+  height: 31px;
   position: absolute;
-  inset: 0% 0% auto auto;
+  inset: -1px -1px auto auto;
 }
 
 .grid-simple-testimonial {
